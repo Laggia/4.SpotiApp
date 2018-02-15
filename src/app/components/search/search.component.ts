@@ -9,11 +9,21 @@ import { SpotifyService } from '../../services/spotify.service';
 })
 export class SearchComponent {
 
+  termino:string = '';
+
   constructor( public _spotifyService: SpotifyService ) {
-    this._spotifyService.getArtistas()
-          .subscribe( resp => {
-            console.log('Informacion lista!');
-            console.log(resp);
+  }
+
+  buscarArtista(){
+
+    if(this.termino.length == 0){
+      return;
+    }
+
+    this._spotifyService.getArtistas( this.termino )
+          .subscribe( artistas => {
+            // console.log('Informacion lista!');
+            // console.log(artistas);
           });
   }
 
